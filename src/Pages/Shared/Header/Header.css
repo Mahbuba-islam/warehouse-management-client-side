@@ -1,0 +1,12 @@
+.nav{
+    display: flex;
+    justify-content: center;
+   
+    
+}
+
+.nav img{
+  margin-right: 300px;
+  display:inline-block;
+}
+
