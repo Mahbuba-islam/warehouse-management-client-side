@@ -29,8 +29,7 @@ const ManageInventory = ({manageInventory}) => {
       <td> Price: {price}</td>
       <td> Quantity:  {quantity}</td>
       <td><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '>Delete</Button> </td>
-     
-    </tr>
+     </tr>
     
 </tbody>
 </Table>

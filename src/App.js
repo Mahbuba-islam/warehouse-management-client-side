@@ -4,11 +4,11 @@ import './App.css';
 
 import Blogs from './Pages/Blogs/Blogs';
 
-import Home from './Pages/Home/Home/Home';
+import Home from './Pages/Home/Home';
 
-import Login from './Pages/Login/Login/Login';
+
 import Register from './Pages/Login/Register/Register';
-import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
+import RequireAuth from './Pages/Login/RequireAuth';
 
 
 import Footer from './Pages/Shared/Footer/Footer';
@@ -18,10 +18,11 @@ import InventoryDetails from './Pages/InventoryDetails/InventoryDetails';
 import ManageItems from './Pages/ManageItems/ManageItems';
 import AddItems from './Pages/AddItems/AddItems';
 import MyItems from './Pages/MyItems/MyItems';
-import ManageInventories from './Pages/ManageInventories/ManageInventories';
+import ManageInventories from './Pages/Home/ManageInventories/ManageInventories';
 
 import Contact from './Pages/Contact/Contact';
 import AddInventory from './Pages/AddInventory/AddInventory';
+import Login from './Pages/Login/Login';
 
 function App() {
   return (

@@ -2,7 +2,7 @@
 stackoverFlow link: https://stackoverflow.com/questions/72320591/how-to-decrease-quantity-in-node-js
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-###This froject is about Warehouse management: For, complete this project i have to maintain and following many steps:
+#This froject is about Warehouse management: For, complete this project i have to maintain and following many steps:
 
 install npm: node js bootstrap firebase react react-bootstrap react-dom react-firebase-hooks react-hook-form react-router-dom react-scripts react-toastify web-vitals
 

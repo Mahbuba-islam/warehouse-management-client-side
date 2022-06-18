@@ -4,10 +4,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import auth from '../../../firebase.init';
-import Loading from '../../Shared/Loading/Loading';
+import auth from '../../Firebase.init'
+import Loading from '../Shared/Loading/Loading';
 
-import SocialLogin from '../SocialLogin/SocialLogin';
+import SocialLogin from '../Login/SocialLogin';
 
 const Login = () => {
     const emailRef = useRef('');

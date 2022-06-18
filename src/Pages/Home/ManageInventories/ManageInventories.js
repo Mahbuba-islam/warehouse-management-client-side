@@ -24,9 +24,12 @@ const ManageInventories = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console(data);
-                const remaining = inventories.filter(manageInventory => manageInventory._id._id !== id);
-                setInventories(remaining);
+                if(data.deletedCount > 0){
+                    console.log('deleted')
+                    const remaining = inventories.filter(manageInventory => manageInventory._id !== id);
+                    setInventories(remaining);
+                }
+               
             })
         }
     }

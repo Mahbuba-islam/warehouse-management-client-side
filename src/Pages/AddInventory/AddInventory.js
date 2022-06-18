@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 const AddInventory = () => {
     
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     
 
    
@@ -20,8 +20,10 @@ const AddInventory = () => {
             body: JSON.stringify(data)
         })
         .then(res=> res.json())
-        .then(result =>{
-            console.log(result);
+        .then(data =>{
+            console.log(data);
+            alert('users added successfully')
+            reset()
         } )
     };
     return (
