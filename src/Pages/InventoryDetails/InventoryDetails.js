@@ -5,8 +5,12 @@ const InventoryDetails = () => {
     const { id } = useParams();
     const [inventory , setInvntory] = useState({})
    const [isReload , setIsReload] = useState(false)
-    
-    
+   const [quantity , setQuantity] = useState(inventory.quantity)
+   
+    console.log(inventory.quantity, quantity)
+
+
+
     useEffect( ()=>{
         const url = `http://localhost:4000/inventoryItem/${id}`
         fetch(url)
@@ -19,8 +23,7 @@ const handleAddQuantity = event => {
   event.preventDefault()
   const quantity = event.target.quantity.value
   const updateQuantity = {quantity}
-  const newQuantity = inventory.quantity
-   updateQuantity = newQuantity + newQuantity
+
   console.log(quantity)
     const url = `http://localhost:4000/inventoryItem/${id}`;
     fetch(url, {
@@ -32,38 +35,18 @@ const handleAddQuantity = event => {
     })
     .then(res=> res.json())
     .then(data =>{
-        const quantity = inventory.quantity
-        const newQuantity = [...quantity, data]
-        setInvntory(newQuantity)
-        console.log(newQuantity)
-        setIsReload(!isReload)
+        console.log(data)
+        const previousQuantity = inventory.quantity
+        const newQuantity = [...previousQuantity, data]
+        
+        //  newQuantity = previousQuantity + data
+        setQuantity(newQuantity )
+         console.log(data)
+       setIsReload(!isReload)
     } )
 };
    
-//    const onSubmit = quantity => {
-// //   console.log(quantity)
-//   const reStock = quantity
-//   const preQuantity = inventory.quantity
-  
-//   const updateQuantity = preQuantity + reStock
-    
-//     const url = `http://localhost:4000/inventoryItem/${id}`;
-//     fetch(url, {
-//         method: 'PUT',
-//         headers: {
-//             'content-type': 'application/json'
-//         },
-//         body: JSON.stringify(updateQuantity )
-         
-//     })
-//     .then(res=> res.json())
-//     .then(updateQuantity =>{
-//         setInvntory( updateQuantity);
-//         setIsReload(!isReload)
-//     } )
-// };
 
-  
     return (
        
        <div className='container w-50 py-5 text-center' >
@@ -76,6 +59,7 @@ const handleAddQuantity = event => {
             <p>Supplier Name: {inventory.supplier}</p>
             <h4>Price: {inventory.price}</h4>
             <h3>Quantity:{inventory.quantity}</h3> 
+            
             <p><small>{inventory.description}</small></p>
             <h5>Sold</h5>
             
