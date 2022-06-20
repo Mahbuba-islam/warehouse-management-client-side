@@ -5,10 +5,9 @@ const InventoryDetails = () => {
     const { id } = useParams();
     const [inventory , setInvntory] = useState({})
    const [isReload , setIsReload] = useState(false)
-   const [quantity , setQuantity] = useState(inventory.quantity)
+   const [updatedQuantity , setQuantity] = useState(inventory.quantity)
+   console.log(updatedQuantity )
    
-    console.log(inventory.quantity, quantity)
-
 
 
     useEffect( ()=>{
@@ -23,6 +22,7 @@ const handleAddQuantity = event => {
   event.preventDefault()
   const quantity = event.target.quantity.value
   const updateQuantity = {quantity}
+ 
 
   console.log(quantity)
     const url = `http://localhost:4000/inventoryItem/${id}`;
@@ -38,7 +38,7 @@ const handleAddQuantity = event => {
         console.log(data)
         const previousQuantity = inventory.quantity
         const newQuantity = [...previousQuantity, data]
-        
+       
         //  newQuantity = previousQuantity + data
         setQuantity(newQuantity )
          console.log(data)
@@ -59,7 +59,6 @@ const handleAddQuantity = event => {
             <p>Supplier Name: {inventory.supplier}</p>
             <h4>Price: {inventory.price}</h4>
             <h3>Quantity:{inventory.quantity}</h3> 
-            
             <p><small>{inventory.description}</small></p>
             <h5>Sold</h5>
             

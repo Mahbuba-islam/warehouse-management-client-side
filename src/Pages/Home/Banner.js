@@ -1,56 +1,25 @@
 import React, { useState } from 'react';
-import { Carousel } from 'react-bootstrap';
-
-import banner1 from '../../../src/images/banner-2.png';
-import banner2 from '../../../src/images/banner1.png';
-import banner3 from '../../../src/images/banner3.png';
+import banner1 from '../../../src/images/management-1-resize.jpg';
 
 const Banner = () => {
-    const [index, setIndex] = useState(0);
+     return (
 
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
-    return (
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={banner1}
-                    alt="First slide"
-                />
-                <Carousel.Caption>
-                    <h3 className='text-primary'>From $850</h3>
-                    <p>Iphone 8s</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={banner2}
-                    alt="Second slide"
-                />
+        <div className='container rounded  
+        mb-5 mt-5 mb-5 '>
+          <h1 className=' text-center mt-5' style={{color:'#4a509b'}}>Warehouse Inventory Management</h1>
+           <div className='d-flex  justify-content-center p-3 mt-5'>
+         
+         <div>
+            <h5 className='text-start  ms-5 lh-lg fs-4'>Better organize your <span style={{color:'#6b4a9b'}}>Warehouse</span> with the smart double entry inventory system.</h5>
+         <p className='mt-4 w-75 text-start  ms-5  lh-lg'  style={{width:'30%'}} >Get the most efficient stocking method and improve all your internal operations. Odoo's double-entry inventory has no stock input, output or transformation.</p>
 
-                <Carousel.Caption>
-                    <h3 className='text-primary'>From 1200</h3>
-                    <p>Surface Laptop</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={banner3}
-                    alt="Third slide"
-                />
+        </div>  
+           <img className='img-fluid ' src={banner1} alt="" />
+           </div>
+          
 
-                <Carousel.Caption>
-                    <h3 className='text-primary'>From $1680</h3>
-                    <p>
-                        Apple Latitude
-                    </p>
-                </Carousel.Caption>
-            </Carousel.Item>
-        </Carousel>
+       </div>
+       
     );
 };
 

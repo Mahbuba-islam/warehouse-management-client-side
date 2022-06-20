@@ -17,36 +17,36 @@ const Header = () => {
 
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" sticky='top' bg="primary" variant="dark" text="primary">
+            <Navbar collapseOnSelect expand="lg" sticky='top'  style={{backgroundColor:'#6b4a9b'}}>
                 <Container>
               <Navbar.Brand className='nav' as={Link} to="/">
                     <h2 className='heading text-white'> WAREHOUSE</h2>
                  </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mx-auto text-primary">
-                            <Nav.Link href="home#InventoryItems ">InventoryItems</Nav.Link>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                    <Navbar.Collapse id="responsive-navbar-nav"  >
+                        <Nav className="mx-auto  text-white " >
+                            <Nav.Link href="home#InventoryItems " style={{color:'white'}}>InventoryItems</Nav.Link>
                             
-                            <Nav.Link as={Link} to="Blogs">
+                            <Nav.Link as={Link} to="Blogs"  style={{color:'white'}}>
                                 Blogs
                             </Nav.Link>
                             
-                            <Nav.Link as={Link} to="contact">Contact Us</Nav.Link>
+                            <Nav.Link as={Link} to="contact" style={{color:'white'}}>Contact Us</Nav.Link>
                             
                             
                             
                         </Nav>
                         <Nav>
                             
-                            <Nav.Link as={Link} to="Register">
+                            <Nav.Link as={Link} to="Register" style={{color:'white'}}>
                                 Register
                             </Nav.Link>
                            
                             {
                                 user && <>
-                                <Nav.Link as={Link} to="manageItems">ManageItems</Nav.Link>
-                                <Nav.Link as={Link} to="addItems">Add Items</Nav.Link>
-                                <Nav.Link as={Link} to="myItems">MyItems</Nav.Link>
+                                <Nav.Link as={Link} to="manageItems" style={{color:'white'}}>ManageItems</Nav.Link>
+                                <Nav.Link as={Link} to="addItems" style={{color:'white'}}>Add Items</Nav.Link>
+                                <Nav.Link as={Link} to="myItems" style={{color:'white'}}>MyItems</Nav.Link>
                                 
                                 </>
                             }

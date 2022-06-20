@@ -1,9 +1,15 @@
-#management-container{
-    background-color: rgba(61, 115, 214, 0.863);
-    color: white;
-    
-}
 
 .heading{
-    color: white;
+    color: rgb(71, 9, 129);
+}
+
+.managements-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap : 10px;
+    /* background: #eefcfb; */
+    border-radius: 2%;
+    padding: 1%;
+    
+    
 }

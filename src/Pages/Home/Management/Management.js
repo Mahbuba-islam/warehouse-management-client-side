@@ -1,15 +1,17 @@
 import React from 'react';
-
+import './Management.css'
 const Management = ({management}) => {
-    const {_id , title , description } = management;
+    const {_id , title , description , img} = management;
     return (
-        <div>
-             <div className='InventoryItem '>
-           <h2>{title}</h2>
+        <div className='managements-section'>
+             <div className='managements-div'>
+             <img src={img} alt="icon" ></img>
+           <h5>{title}</h5>
+           
           <p>{description}</p>
-          <p>{_id}</p>
           
-            
+          
+          
         </div>
         </div>
     );

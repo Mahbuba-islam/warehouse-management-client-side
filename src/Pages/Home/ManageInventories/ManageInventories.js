@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 // import '../ManageInventory/ManageInventory.css'
-
-
 import { Link } from 'react-router-dom';
+import { Button} from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 
-
-import { Button, Table } from 'react-bootstrap';
 
 const ManageInventories = () => {
     const [inventories, setInventories] = useState([]);
@@ -35,50 +33,55 @@ const ManageInventories = () => {
     }
 
     return (
-        <div id="inventoryItems" className='container'>
-        <div className="row">
-        <h1 className='text-primary text-center mt-3 py-5'> All Inventory Products</h1>
-        <div className="Manageinventory-container p-3">
-            
-        {
-            inventories.map((manageInventory) =>  
-                <div key = {manageInventory.id}  className='text-center'>
-           
-                <Table striped bordered hover>
-      
-      <tbody className='text-center mt-2'>
-        <tr className='text-center'>
-          <td> {manageInventory.name}</td>
-          <td>Supplier:  {manageInventory.supplier}</td>
-          <td> Price: {manageInventory.price}</td>
-          <td> Quantity:  {manageInventory.quantity}</td>
-          <td><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '>Delete</Button> </td>
-         
+         <div>
+        
+        <h1 className=' text-center mt-3 py-5' style={{color:'#41478a'}}> All Inventory Products</h1>
+        <div className="Manageinventory-container mx-5 px-5">
+       
+        <Table responsive="sm">
+     
+        <thead className=' border border-4 text-center ' style={{color:'#315167'}}>
+        <tr>
+          <th className='border border-2 ' >Name</th>
+          <th className='border border-2 '>Supplier</th>
+          <th className='border border-2 '>Price</th>
+          <th className='border border-2 '>Quantity</th> 
+          <th className='border border-2 '>Update</th>
         </tr>
-        
-     </tbody>
-     </Table>
-        
-     </div>)}
+      </thead>
+      <tbody className='border border-4  '>
+        {
+            inventories.map(manageInventory => 
+              <tr className='text-center '>
+              <td className='border border-2 '>{manageInventory.name}</td>
+              <td className='border border-2'>{manageInventory.supplier}</td>
+              <td className='border border-2'>{manageInventory.price}</td>
+              <td className='border border-2'>{manageInventory.Quantity}</td>
+              <td className='className='border border-2><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '>X</Button></td>
+            </tr>
+          
+         )
+}
 
-{/* {
-            inventories.map(manageInventory => <ManageInventory
-            key = {manageInventory._id}
-            manageInventory = {manageInventory}>
-                
-            </ManageInventory>)
-        } */}
-
-         
-       
-       
-        </div>
+   </tbody>
+            
+    </Table>
+               
+      
+ <div>
         <Link to="/addInventory">
-                    <button className='btn btn-primary my-5 text-center p-4 ms-5'>Add Item</button>
+                   <div className='text-center'>
+                   <button className='btn-lg  my-5 px-5 py-2 fs-4  text-white border-0 shadow-lg' style={{backgroundColor:'#473167'}}>Add Item</button>
+                   </div>
+                   
                 </Link>
         </div>
-    </div>
-    );
-};
+        </div>
+        </div>
+    
+    )
+}
+
+;
 
 export default ManageInventories;

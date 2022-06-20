@@ -1,11 +1,16 @@
-import { Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+// import '../ManageInventory/ManageInventory.css'
+
+
+import { Link } from 'react-router-dom';
+
+
+import { Button, Table } from 'react-bootstrap';
 
 const MyItems = () => {
     const [inventories, setInventories] = useState([]);
     useEffect( ()=>{
-        fetch('http://localhost:4000/myItems')
+        fetch('http://localhost:4000/inventoryItems')
         .then(res => res.json())
         .then(data => setInventories(data));
     }, [])
@@ -13,15 +18,18 @@ const MyItems = () => {
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure?');
         if(proceed){
-            const url = `http://localhost:4000/myItems/${id}`;
+            const url = `http://localhost:4000/inventoryItems/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
             .then(res => res.json())
             .then(data => {
-                console(data);
-                const remaining = inventories.filter(manageInventory => manageInventory._id._id !== id);
-                setInventories(remaining);
+                if(data.deletedCount > 0){
+                    console.log('deleted')
+                    const remaining = inventories.filter(manageInventory => manageInventory._id !== id);
+                    setInventories(remaining);
+                }
+               
             })
         }
     }
@@ -53,13 +61,21 @@ const MyItems = () => {
         
      </div>)}
 
-
+{/* {
+            inventories.map(manageInventory => <ManageInventory
+            key = {manageInventory._id}
+            manageInventory = {manageInventory}>
+                
+            </ManageInventory>)
+        } */}
 
          
        
        
         </div>
-        
+        <Link to="/addInventory">
+                    <button className='btn btn-primary my-5 text-center p-4 ms-5'>Add Item</button>
+                </Link>
         </div>
     </div>
     );

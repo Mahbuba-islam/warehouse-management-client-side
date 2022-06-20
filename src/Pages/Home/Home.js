@@ -19,7 +19,7 @@ const Home = () => {
 
             <div className='text-center'>
                 <Link to="/manageInventories">
-                    <button className='btn btn-primary my-5'>Manage Inventories</button>
+                    <button className=' btn-lg  my-5 px-5 py-3 fs-4 text-white border-0 shadow-lg ' style={{backgroundColor:'#473167'}}>Manage Inventories</button>
                 </Link>
             </div>
         </>

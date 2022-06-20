@@ -2,7 +2,10 @@
 .inventory-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap : 20px;
+    grid-gap : 60px;
+    /* background: #eefcfb; */
+    border-radius: 2%;
+    padding: 3%;
     
 }
 
