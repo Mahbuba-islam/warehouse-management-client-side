@@ -28,15 +28,15 @@ const AddInventory = () => {
         } )
     };
     return (
-        <div className='w-50 mx-auto'>
-            <h2>Please add a service</h2>
-            <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" disabled value={user?.email} class="input w-full max-w-xs " />
-                <input className='mb-2' placeholder='ProductName' {...register("name", { required: true, maxLength: 20 })} />
-                <textarea className='mb-2' placeholder='Description' {...register("description")} />
-                <input className='mb-2' placeholder='Price' type="number" {...register("price")} />
-                <input className='mb-2' placeholder='Photo URL' type="file" {...register("img")} />
-                <input type="submit" value="Add Service" />
+        <div className='w-50 mx-auto my-4 py-5 px-5 mt-3'>
+            <h2 className='mb-4 text-center' style={{color:'#4a509b'}}>Please add a Product</h2>
+            <form className='d-flex flex-column px-4 shadow-lg p-4' onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" disabled value={user?.email} className="input w-full max-w-xs py-2 px-2 my-2 border border-2 border-secondary" />
+                <input className='mb-2 py-2 px-2 border border-2 border-secondary' placeholder='ProductName' {...register("name", { required: true, maxLength: 20 })} />
+                <textarea className='mb-2 py-2 px-2 border border-2 border-secondary py-2' placeholder='Description' {...register("description")} />
+                <input className='mb-2 py-2 px-2 border border-2 border-secondary' placeholder='Price' type="number" {...register("price")} />
+                <input className='mb-2 py-2 px-2 border border-2 border-secondary py-2' placeholder='Photo URL' type="file" {...register("img")} />
+               <input className='border-secondary btn-secondary border-0 py-2 w-50 mx-auto mt-3' type="submit" value="Add Service" /> 
             </form>
         </div>
     );

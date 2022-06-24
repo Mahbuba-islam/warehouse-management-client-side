@@ -7,7 +7,7 @@ const Footer = () => {
     return (
        <div>
        <footer className='footer text-center h-25' style={{backgroundColor:'#6b4a9b'}}>
- <div class="container mt-2">
+ <div className="container mt-2">
   <div className="row">
     <div className ="col text-sm-start">
     <p>Products</p>
@@ -57,7 +57,7 @@ const Footer = () => {
 
 
 
- <div class="d-flex mt-3 pt-5 flex-direction: coloum justify-content-around align-items-center">
+ <div className="d-flex mt-3 pt-5 flex-direction: coloum justify-content-around align-items-center">
   <div className=''>
 <h3>United States</h3>
 <p>2300 Oracle Way
@@ -65,22 +65,22 @@ Austin, Texas 78741
 </p>
  </div>
    
-<div class="d-flex flex-direction: coloum justify-content-around align-items-center border-left">
+<div className="d-flex flex-direction: coloum justify-content-around align-items-center border-left">
  <p className='text-white'><small>copyright @ {year} Pty Ltd. </small></p>
  <div>
-    <div class="verticalLine"></div>
+    <div className="verticalLine"></div>
  </div>
  <p><small>Site Map</small> </p>
  <div>
-    <div class="verticalLine"></div>
+    <div className="verticalLine"></div>
  </div>
 <p><small>Cookie Preferences</small></p>
 <div>
-    <div class="verticalLine"></div>
+    <div className="verticalLine"></div>
  </div>
 <p><small>Terms of Use and Privacy</small> </p>
 <div>
-    <div class="verticalLine"></div>
+    <div className="verticalLine"></div>
  </div>
 <p><small>Follow us</small> </p>
 </div>

@@ -1,0 +1,9 @@
+
+
+@media only screen and (min-width: 577px)  {
+    .service-section img{
+        width:50%;
+        height:300px
+    
+    }
+}
