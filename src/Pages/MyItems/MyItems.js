@@ -6,14 +6,19 @@ import { Link } from 'react-router-dom';
 
 
 import { Button, Table } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase.init';
 
 const MyItems = () => {
+    const [user] = useAuthState(auth);
+
+    
     const [inventories, setInventories] = useState([]);
     useEffect( ()=>{
         fetch('http://localhost:4000/inventoryItems')
         .then(res => res.json())
         .then(data => setInventories(data));
-    }, [])
+    }, [user])
 
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure?');

@@ -6,11 +6,15 @@ import Banner from './Banner';
 import InventoryItems from './InventoryItems/InventoryItems';
 
 import Services from './Services/Services';
+import Loading from '../Shared/Loading/Loading';
 
 
 const Home = () => {
+    <Loading></Loading>;
+         
     return (
         <>
+        
             <Banner></Banner>
             <InventoryItems></InventoryItems>
             <Managements></Managements>

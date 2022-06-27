@@ -19,7 +19,7 @@ import ManageItems from './Pages/ManageItems/ManageItems';
 import AddItems from './Pages/AddItems/AddItems';
 import MyItems from './Pages/MyItems/MyItems';
 import ManageInventories from './Pages/Home/ManageInventories/ManageInventories';
-
+import Profile from '../src/Pages/Profile'
 import Contact from './Pages/Contact/Contact';
 import AddInventory from './Pages/AddInventory/AddInventory';
 import Login from './Pages/Login/Login';
@@ -51,8 +51,10 @@ function App() {
        <Route path="/contact" element={<Contact></Contact>}></Route>
         
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/profile" element={<Profile></Profile>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+      
       
        <Route path="/addInventory" element={<AddInventory></AddInventory>}></Route>
       

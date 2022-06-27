@@ -98,16 +98,56 @@
 // };
 
 // export default Login;
-import React from 'react';
+import React, { useState } from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../Firebase.init';
+import Loading from '../Shared/Loading/Loading';
 
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const { register, formState: { errors }, handleSubmit, reset } = useForm();
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+    
+  let signInError;
+
+  
+      //  require auth
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  if (loading) {
+    return <Loading></Loading>;
+  }    
+  
+  if (user) {
+            navigate(from, { replace: true });
+        }
+ 
+  if (error) {
+    return (
+     signInError=<p className='text-danger'>{error?.message}</p>
+     
+    );
+  }
+  
+ 
+ 
   const onSubmit = data => {
-    console.log(data)
+    
+    signInWithEmailAndPassword(data.email, data.password)
+    reset()
+   
   };
+ 
     return (
        <div className=' h-100 mt-5 mb-5 pt-5 pb-5'>
         <div className="card mx-auto container shadow-lg border-0" style={{width:'30rem'}}>
@@ -157,10 +197,11 @@ const Login = () => {
   
   </div>
   <div className='text-center py-2 w-100'>
+  {signInError}
   <button type="submit" value='login' class="btn btn-primary px-5">Login</button>
   </div>
-  
-</form>
+  </form>
+  <p>New to here <Link to={'/Register'}>Create New Account</Link></p>
 </div>
      
      {/* dividers */}

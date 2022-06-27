@@ -1,15 +1,15 @@
 import React, {  useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
 const InventoryDetails = () => {
     const { id } = useParams();
     const [inventory , setInvntory] = useState({})
    const [isReload , setIsReload] = useState(false)
-   const [updatedQuantity , setQuantity] = useState(inventory.quantity)
-   console.log(updatedQuantity )
-   
-
-
+   const [quantity , setQuantity] = useState({})
+//    const [delivered , setQuantity] = useState({})
+  
+  
     useEffect( ()=>{
         const url = `http://localhost:4000/inventoryItem/${id}`
         fetch(url)
@@ -18,65 +18,89 @@ const InventoryDetails = () => {
     }, [isReload, id])
 
 
-const handleAddQuantity = event => {
-  event.preventDefault()
-  const quantity = event.target.quantity.value
-  const updateQuantity = {quantity}
- 
-
-  console.log(quantity)
-    const url = `http://localhost:4000/inventoryItem/${id}`;
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(updateQuantity)
-    })
-    .then(res=> res.json())
-    .then(data =>{
-        console.log(data)
-        const previousQuantity = inventory.quantity
-        const newQuantity = [...previousQuantity, data]
+    const handleAddQuantity = event => {
+        event.preventDefault()
+        const newQuantity = parseInt(event.target.cquantity.value)
+        const previousQuantity = parseInt(inventory.quantity)
+        const quantity = newQuantity+previousQuantity 
+        const updateQuantity = { quantity}
+        event.target.reset()
        
-        //  newQuantity = previousQuantity + data
-        setQuantity(newQuantity )
-         console.log(data)
-       setIsReload(!isReload)
-    } )
-};
+       
+          const url = `http://localhost:4000/inventoryItem/${id}`;
+          fetch(url, {
+              method: 'PUT',
+              headers: {
+                  'content-type': 'application/json'
+              },
+              body: JSON.stringify( updateQuantity)
+          })
+          .then(res=> res.json())
+          .then(newQuantity =>{
+              console.log(newQuantity)
+             setQuantity(newQuantity )
+             setIsReload(!isReload)
+          } )
+      };
+
    
+      const deliveredHandler = () =>{
+       const previousQuantity = parseInt(inventory.quantity)
+       const quantity = previousQuantity-1 
+        const updateQuantity = { quantity}
+       
+        const url = `http://localhost:4000/inventoryItem/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify( updateQuantity)
+        })
+        .then(res=> res.json())
+        .then(data =>{
+            console.log(data)
+           setQuantity(data )
+           setIsReload(!isReload)
+        } )
+    };
+    
+
+
 
     return (
        
        <div className='container w-50 py-5 text-center' >
           
-          <div> <h2>Welcome to detail</h2>
-                
-                <img  src={inventory.img} alt="" />
-                <p>{id}</p> 
-            <h2>{inventory.name}</h2>
-            <p>Supplier Name: {inventory.supplier}</p>
-            <h4>Price: {inventory.price}</h4>
-            <h3>Quantity:{inventory.quantity}</h3> 
-            <p><small>{inventory.description}</small></p>
-            <h5>Sold</h5>
-            
-          <form className='d-flex flex-column' onSubmit={handleAddQuantity}>
-         <input className='mb-2' placeholder='quantity ' type="number" name='quantity' />
+          <div> <h2 className='my-4' style={{color:'#4a509b'}}>Welcome to detail</h2>
+
+          <div className="card mb-5 shadow-lg py-4" >
+  <div className="row g-0">
+    <div className="col-md-4">
+    <img className='h-100 img-fluid  w-100 ps-4' src={inventory.img} alt="" />
+    
+    </div>
+    <div className="col-md-5">
+      <div className="card-body text-start ps-4">
+        <h5 className="card-title">Product Name: {inventory.name}</h5>
+        <h5 className="card-text">Supplier Name: {inventory.supplier}</h5>
+        <h5>Product Price: {inventory.price}</h5>
+        <h5>Product Quantity: {inventory.quantity}</h5> 
+        <diV className='d-flex flex-column pe-5 align-items-center mt-4 justify-content-between'>
+        <button onClick={() => deliveredHandler('quantity')} className='mt-2 btn-danger'>Delivered</button>
+        <form className='d-flex flex-column my-3' onSubmit={handleAddQuantity}>
+         <input className='mb-2' placeholder='quantity ' type="number" name='cquantity' />
          <input type="submit"  value='Restock the items'/>  
           </form>
-           </div>
+        </diV>
+      
+      </div>
+    </div>
+  </div>
+</div>
+</div>
             
-            <div className='text-center'>
-                <Link to="/manageInventories">
-                    <button  className='btn btn-primary my-5 '>Manage Inventories</button>
-                </Link>
-            </div>
-           
-            
-        </div>
+</div>
     );
 };
-
 export default InventoryDetails;
