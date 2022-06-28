@@ -26,7 +26,7 @@ const SocialLogin = () => {
            
             {errorElement}
             <div className='mt-4 text-center mb-3'>
-            <button onClick={() => signInWithGoogle()} type="button" class="btn btn-outline-primary border border-primary border-3"> <img style={{ width: '30px' }} src={google} alt="" /> Continue with Google</button>
+            <button onClick={() => signInWithGoogle()} type="button" className="btn btn-outline-primary border border-primary border-3"> <img style={{ width: '30px' }} src={google} alt="" /> Continue with Google</button>
         </div>
       </div>
     );

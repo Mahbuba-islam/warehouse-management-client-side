@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useUpdateEmail, useUpdateProfile } from 'react-firebase-hooks/auth';
+import React from 'react';
+import { useCreateUserWithEmailAndPassword,  useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase.init';
@@ -7,13 +7,10 @@ import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin';
 
 const Register = () => {
-        
-    //    redirect another page
-    const navigate = useNavigate;
-
+  
+   
          // useFrom
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
-     
+    const { register, formState: { errors }, handleSubmit, reset } = useForm()
     // signin with email
   const [
     createUserWithEmailAndPassword,
@@ -21,6 +18,9 @@ const Register = () => {
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
+   //    redirect another page
+  //  const navigate = useNavigate;
+
 
     //   updatePropile
   const [updateProfile, updating, updateError, photoURL] = useUpdateProfile(auth);
@@ -40,19 +40,20 @@ const Register = () => {
     );
   }
   
+
   
   
     //  from submit
    const onSubmit = async data => {
+   console.log(data)
     await createUserWithEmailAndPassword(data.email, data.password)
-    reset()
+   await updateProfile({ displayName:data.name, photoURL });
+    // navigate('/inventoryDetails')
    
-    await updateProfile({ displayName:data.name, photoURL });
     
-    navigate('/inventoryDetails')
-    
-    
+    // reset()
   };
+ 
  
 
     return (
@@ -64,9 +65,9 @@ const Register = () => {
   <form className='' onSubmit={handleSubmit(onSubmit)} >
      
      {/* name */}
-  <div class="mb-3">
- <label for="exampleInputEmail1" className="form-label">Name</label>
-    <input type="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+  <div className="mb-3">
+ <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
+    <input type="Name" className="form-control" id="exampleInputName1" aria-describedby="emailHelp" 
     {...register("name", {
       required:{
         value:true,
@@ -77,10 +78,10 @@ const Register = () => {
    </div>
       
       {/* email */}
-  <div class="mb-3">
+  <div className="mb-3">
     
-    <label for="exampleInputEmail1" className="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
     {...register("email", {
       required:{
         value:true,
@@ -95,13 +96,13 @@ const Register = () => {
       })} />
     {errors.email?.type === 'required' && <span className='text-danger'>{errors.email.message}</span>}
     {errors.email?.type === 'pattern' && <span className='text-danger'>{errors.email.message}</span>}
-   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+   <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
   </div>
    
      {/* password */}
-<div class="mb-3">
-    <label for="exampleInputPassword1" className="form-label">password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" 
+<div className="mb-3">
+    <label htmlFor="exampleInputPassword1" className="form-label">password</label>
+    <input type="password" className="form-control" id="exampleInputPassword1" 
     {...register("password", {
       required:{
         value:true,
@@ -120,19 +121,21 @@ const Register = () => {
   </div>
   <div className='text-center py-2 w-100'>
   {signInError}
-  <button type="submit" value='SignUp' class="btn btn-primary px-5">Sign Up</button>
+  <button type="submit" value='SignUp' className="btn btn-primary px-5">Sign Up</button>
  </div>
   
-  
+ 
+ 
+
   </form>
   <p>Already have an Account <Link to={'/Login'}>please logIn</Link></p>
 </div>
      
      {/* dividers */}
-   <div class="row">
-    <div class="col"><hr></hr></div>
-    <div class="col-auto fw-bold">OR</div>
-    <div class="col"><hr></hr></div>
+   <div className="row">
+    <div className="col"><hr></hr></div>
+    <div className="col-auto fw-bold">OR</div>
+    <div className="col"><hr></hr></div>
 </div>
        {/* google login */}
 <SocialLogin></SocialLogin>
