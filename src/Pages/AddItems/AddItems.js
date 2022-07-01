@@ -1,14 +1,17 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import auth from '../../Firebase.init';
 
 const AddItems = () => {
     const { register, handleSubmit, reset } = useForm();
-   
+    const [user] = useAuthState(auth);
+    
 
    
     const onSubmit = data => {
         
-
+console.log(data)
         const url = 'http://localhost:4000/myItems';
         fetch(url, {
             method: 'POST',

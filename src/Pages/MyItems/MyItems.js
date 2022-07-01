@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import '../ManageInventory/ManageInventory.css'
+import '../ManageInventory/ManageInventory.css'
 
 
 import { Link } from 'react-router-dom';
@@ -11,13 +11,19 @@ import auth from '../../Firebase.init';
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
-
-    
-    const [inventories, setInventories] = useState([]);
+   
+    const [myItems, setMyItems] = useState([]);
+   
     useEffect( ()=>{
-        fetch('http://localhost:4000/inventoryItems')
+      
+      if(user){
+        const email = user.email
+        console.log(email)
+        fetch(`http://localhost:4000/myItems?email=${email}`)
         .then(res => res.json())
-        .then(data => setInventories(data));
+        .then(data => setMyItems(data));
+      }
+        
     }, [user])
 
     const handleDelete = id =>{
@@ -31,8 +37,8 @@ const MyItems = () => {
             .then(data => {
                 if(data.deletedCount > 0){
                     console.log('deleted')
-                    const remaining = inventories.filter(manageInventory => manageInventory._id !== id);
-                    setInventories(remaining);
+                    const remaining = myItems.filter(myItems => myItems._id !== id);
+                    setMyItems(remaining);
                 }
                
             })
@@ -42,13 +48,14 @@ const MyItems = () => {
     return (
          <div>
         
-        <h1 className=' text-center mt-3 py-5' style={{color:'#41478a'}}> All Inventory Products</h1>
+        <h1 className=' text-center mt-3 py-5' style={{color:'#41478a'}}> My Products: {myItems.length}</h1>
         <div className="Manageinventory-container mx-5 px-5">
        
         <Table responsive="sm">
      
         <thead className=' border border-4 text-center ' style={{color:'#315167'}}>
         <tr>
+        <th className='border border-2 ' ></th>
           <th className='border border-2 ' >Name</th>
           <th className='border border-2 '>Supplier</th>
           <th className='border border-2 '>Price</th>
@@ -58,13 +65,15 @@ const MyItems = () => {
       </thead>
       <tbody className='border border-4  '>
         {
-            inventories.map(manageInventory => 
+            myItems.map((myItem, index) => 
+             
               <tr className='text-center '>
-              <td className='border border-2 '>{manageInventory.name}</td>
-              <td className='border border-2'>{manageInventory.supplier}</td>
-              <td className='border border-2'>{manageInventory.price}</td>
-              <td className='border border-2'>{manageInventory.Quantity}</td>
-              <td className='className='border border-2><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '>X</Button></td>
+                <td key={index}>{myItem.index}</td>
+              <td className='border border-2 '>{myItem.name}</td>
+              <td className='border border-2'>{myItem.supplier}</td>
+              <td className='border border-2'>{myItem.price}</td>
+              <td className='border border-2'>{myItem.Quantity}</td>
+              <td className='className='border border-2><Button onClick={() => handleDelete(myItem._id)} className='btn btn-danger  '>X</Button></td>
             </tr>
           
          )

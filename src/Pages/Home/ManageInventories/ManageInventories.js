@@ -35,7 +35,7 @@ const ManageInventories = () => {
     return (
          <div>
         
-        <h1 className=' text-center mt-3 py-5' style={{color:'#41478a'}}> All Inventory Products</h1>
+        <h1 className=' text-center mt-3 py-5' style={{color:'#41478a'}}> All Inventory Products:{inventories.length}</h1>
         <div className="Manageinventory-container mx-5 px-5">
        
         <Table responsive="sm">
@@ -45,18 +45,21 @@ const ManageInventories = () => {
           <th className='border border-2 ' >Name</th>
           <th className='border border-2 '>Supplier</th>
           <th className='border border-2 '>Price</th>
-          <th className='border border-2 '>Quantity</th> 
+          <th className='border border-2 '>Quantity</th>
           <th className='border border-2 '>Update</th>
+         
         </tr>
       </thead>
       <tbody className='border border-4  '>
+      {/* key = {manageInventory._id} */}
         {
             inventories.map(manageInventory => 
               <tr className='text-center '>
+              
               <td className='border border-2 '>{manageInventory.name}</td>
               <td className='border border-2'>{manageInventory.supplier}</td>
               <td className='border border-2'>{manageInventory.price}</td>
-              <td className='border border-2'>{manageInventory.Quantity}</td>
+              <td className='border border-2'>{manageInventory.quantity}</td>
               <td className='className='border border-2><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '>X</Button></td>
             </tr>
           

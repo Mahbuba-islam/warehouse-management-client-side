@@ -7,55 +7,39 @@ import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin';
 
 const Register = () => {
-  
-   
-         // useFrom
-    const { register, formState: { errors }, handleSubmit, reset } = useForm()
-    // signin with email
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth);
-   //    redirect another page
-  //  const navigate = useNavigate;
+  const navigate = useNavigate();
 
+ const { register, formState: { errors }, handleSubmit } = useForm();
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
 
-    //   updatePropile
-  const [updateProfile, updating, updateError, photoURL] = useUpdateProfile(auth);
-  
-    //   Loading
-  if (loading || updating) {
-    return <Loading></Loading>;
-  }    
-    //    signin error
-  let signInError;
-      
-    //  errors
-  if (error||updateError) {
-    return (
-     signInError=<p className='text-danger'>{error?.message || updateError.message}</p>
-     
-    );
-  }
-  
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-  
-  
-    //  from submit
-   const onSubmit = async data => {
-   console.log(data)
-    await createUserWithEmailAndPassword(data.email, data.password)
-   await updateProfile({ displayName:data.name, photoURL });
-    // navigate('/inventoryDetails')
-   
     
-    // reset()
-  };
- 
- 
+    let signInError;
 
+    if (loading ||  updating) {
+        return <Loading></Loading>
+    }
+
+    if (error  || updateError) {
+        signInError = <p className='text-red-500'><small>{error?.message  || updateError?.message}</small></p>
+    }
+
+    if (user) {
+        console.log(user);
+    }
+
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
+        console.log('update done');
+        navigate('/home');
+    }
     return (
        <div className=' h-100 mt-5 mb-5 pt-5 pb-5'>
         <div className="card mx-auto container shadow-lg border-0" style={{width:'30rem'}}>

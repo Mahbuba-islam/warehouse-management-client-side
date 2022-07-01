@@ -56,7 +56,7 @@ const Header = () => {
                              {    user ?
                             
 
-                    <Nav.Link as={Link} to="Profile" className='bg-white shadow-lg rounded-circle fw-bold mx-1 text-center text-black' style={{color:'#6b4a9b',  width: '38px', height: '39px'}}>
+                    <Nav.Link as={Link} to="Profile" className='bg-white shadow-lg rounded-circle fw-bold mx-1 text-center ' style={{color:'#6b4a9b',  width: '38px', height: '39px'}}>
                       {user.displayName?.slice(0,1).toUpperCase()}
                     </Nav.Link>
                                 
