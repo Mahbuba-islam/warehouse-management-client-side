@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../ManageInventory/ManageInventory.css'
-
-
 import { Link } from 'react-router-dom';
-
-
 import { Button, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase.init';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
@@ -29,7 +28,7 @@ const MyItems = () => {
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure?');
         if(proceed){
-            const url = `http://localhost:4000/inventoryItems/${id}`;
+            const url = `http://localhost:4000/myItems/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -72,8 +71,8 @@ const MyItems = () => {
               <td className='border border-2 '>{myItem.name}</td>
               <td className='border border-2'>{myItem.supplier}</td>
               <td className='border border-2'>{myItem.price}</td>
-              <td className='border border-2'>{myItem.Quantity}</td>
-              <td className='className='border border-2><Button onClick={() => handleDelete(myItem._id)} className='btn btn-danger  '>X</Button></td>
+              <td className='border border-2'>{myItem.quantity}</td>
+              <td className='className='border border-2><Button onClick={() => handleDelete(myItem._id)} className='btn btn-danger  '><FontAwesomeIcon icon = {faTrashCan} /></Button></td>
             </tr>
           
          )

@@ -10,15 +10,17 @@ const AddInventory = () => {
     const { register, handleSubmit, reset } = useForm();
     const [user] =useAuthState(auth)
    
-    // const imgStorageKey = 'ff4c938471ffc70932bc22ba56c54e31'
+     const imgStorageKey = 'ff4c938471ffc70932bc22ba56c54e31';
     
     const onSubmit = data => {
-      
+       
         console.log(data)
         const url = 'http://localhost:4000/inventoryItems';
         
         fetch(url, {
             method: 'POST',
+        
+            
             headers: {
                 'content-type': 'application/json'
             },
@@ -30,13 +32,38 @@ const AddInventory = () => {
             toast('Your Product Successfully added')
             reset()
         } )
+
+        // const image = data.img[0];
+        // const formData = FormData()
+        // formData.Append('image', image)
+        // const ImgUrl = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`
+        // fetch(ImgUrl, {
+        //     method: 'POST',
+        
+            
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: formData
+        // })
+        // .then(res=> res.json())
+        // .then(result =>{
+        //     // if(result.success){
+        //     //     const img = result.data.url
+               
+        //     // }
+        //     console.log(result);
+            
+        //     reset()
+        // } )
+
     };
     return (
         <div className='w-50 mx-auto my-4 py-5 px-5 mt-3'>
             <h2 className='mb-4 text-center' style={{color:'#4a509b'}}>Please add a Product</h2>
             <form className='d-flex flex-column px-4 shadow-lg p-4' onSubmit={handleSubmit(onSubmit)}>
            
-                <input className='mb-2 py-2 px-2 border border-2 border-secondary' placeholder='email' {...register("email", {value:user.email}, { required: true, maxLength: 20 })} />
+                <input className='mb-2 py-2 px-2 border border-2 border-secondary' placeholder='email' {...register("email", {value:user?.email}, { required: true, maxLength: 20 })} />
                 <input className='mb-2 py-2 px-2 border border-2 border-secondary' placeholder='ProductName' {...register("name", { required: true, maxLength: 20 })} />
                 <input className='mb-2 py-2 px-2 border border-2 border-secondary' placeholder='Price' type="number" {...register("price")} />
                 <input className='mb-2 py-2 px-2 border border-2 border-secondary' placeholder='Quantity' type="number" {...register("quantity")} />

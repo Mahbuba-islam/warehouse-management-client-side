@@ -4,17 +4,20 @@ import { Table } from 'react-bootstrap';
 const Contact = () => {
     return (
         <div className='container'>
-            <h1 className='text-primary text-center mt-5'>Contact Information</h1>
+            <h1 className='text-primary text-center mt-5' >Contact Information</h1>
             <h3 className='text-center mt-4'>Adress:</h3>
            <div className="d-flex mt-5">
            
-         <div className='w-50 border border-light shadow-sm p-5 me-3'>
+         <div className='w-50 border border-light shadow-sm p-5 me-3 ' >
           <h4>Company Name: <small>WareHouse management</small></h4> 
           <p className='w-50 '>
                1234 Street 
                City NewYork, AB 12345
                United States</p>
          </div>
+         <div>
+    <div className="verticalLine border border-2 border-primary h-100"></div>
+ </div>
          <div className='w-50 border border-light shadow-sm p-5 ms-3 '>
                <h5>Phone:1290785378</h5>
                <h5>Email: sales@email.com</h5>

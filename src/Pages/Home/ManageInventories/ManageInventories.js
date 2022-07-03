@@ -3,15 +3,36 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button} from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const ManageInventories = () => {
     const [inventories, setInventories] = useState([]);
+    const [page , setPage] = useState(0)
+    const [pageCount , setPageCount] = useState(0)
+    const [size, setSize] = useState(5)
+   
+  
+  
     useEffect( ()=>{
-        fetch('http://localhost:4000/inventoryItems')
+        fetch(`http://localhost:4000/inventoryItems?page=${page}&size=${size}`)
         .then(res => res.json())
         .then(data => setInventories(data));
+    }, [page, size])
+
+  
+    useEffect( ()=>{
+        fetch('http://localhost:4000/productCount')
+        .then(res => res.json())
+        .then(data => {
+            const count = data.count
+            const pages = Math.ceil(count/5)
+            setPageCount(pages)});
+        
+           
     }, [])
+
+   
 
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure?');
@@ -60,7 +81,8 @@ const ManageInventories = () => {
               <td className='border border-2'>{manageInventory.supplier}</td>
               <td className='border border-2'>{manageInventory.price}</td>
               <td className='border border-2'>{manageInventory.quantity}</td>
-              <td className='className='border border-2><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '>X</Button></td>
+              <td className='className='border border-2><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '> <FontAwesomeIcon icon = {faTrashCan} /></Button></td>
+             
             </tr>
           
          )
@@ -70,6 +92,22 @@ const ManageInventories = () => {
             
     </Table>
                
+               <div>
+                {
+                    [...Array(pageCount).keys()]
+                    .map(number=> 
+                        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                        <ul className=" pagination justify-content-center d-inline-block  "><li className="page-item me-4"><Button onClick={()=> setPage(number)} className="page-link" >{number+1}</Button></li> </ul> 
+                        )
+                }
+                
+                <select onChange={e => setSize(e.target.value)}>
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select>
+                 
+               </div>
       
  <div>
         <Link to="/addInventory">
