@@ -9,7 +9,7 @@ import SocialLogin from '../SocialLogin';
 const Register = () => {
   const navigate = useNavigate();
 
- const { register, formState: { errors }, handleSubmit } = useForm();
+ const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [
         createUserWithEmailAndPassword,
         user,
@@ -37,11 +37,13 @@ const Register = () => {
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
+        reset()
         console.log('update done');
+       
         navigate('/home');
     }
     return (
-       <div className=' h-100 mt-5 mb-5 pt-5 pb-5'>
+       <div className='container h-100 mt-5 mb-5 pt-5 pb-5 mx-auto'>
         <div className="card mx-auto container shadow-lg border-0" style={{width:'30rem'}}>
         <h5 className="card-title text-center pt-3">Sign Up</h5>
   <div className="card-body ">

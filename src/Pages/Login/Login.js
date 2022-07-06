@@ -86,7 +86,7 @@ const Login = () => {
     }
 
     return (
-        <div className=' h-100 mt-5 mb-5 pt-5 pb-5'>
+        <div className='container h-100 mt-5 mb-5 pt-5 pb-5'>
           <div className="card mx-auto container shadow-lg border-0" style={{width:'30rem'}}>
             
           <h2 className="card-title text-center pt-3">Please Login</h2>

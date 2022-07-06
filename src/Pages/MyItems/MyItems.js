@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../ManageInventory/ManageInventory.css'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Table} from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase.init';
@@ -38,11 +38,7 @@ const MyItems = () => {
       
         })
     
-        // console.log(error.message)
-        // if(error.response.status === 401 || error.response.status === 403){
-          // navigate('/login')
-        
-      }
+       }
     
         
     }, [user])
@@ -68,34 +64,34 @@ const MyItems = () => {
     }
 
     return (
-         <div>
+      <div className='container mx-auto w-100'>
         
-        <h1 className=' text-center mt-3 py-5' style={{color:'#41478a'}}> My Products: {myItems.length}</h1>
-        <div className="Manageinventory-container mx-5 px-5">
-       
-        <Table responsive="sm">
+      <h1 className='my-5 text-center' style={{color:'#41478a'}}> My Products:{myItems.length}</h1>
+      <div className="Manageinventory-container mx-auto text-center">
      
-        <thead className=' border border-4 text-center ' style={{color:'#315167'}}>
-        <tr>
-        <th className='border border-2 ' ></th>
-          <th className='border border-2 ' >Name</th>
-          <th className='border border-2 '>Supplier</th>
-          <th className='border border-2 '>Price</th>
-          <th className='border border-2 '>Quantity</th> 
-          <th className='border border-2 '>Update</th>
-        </tr>
-      </thead>
-      <tbody className='border border-4  '>
+      <Table striped bordered hover>
+   
+      <thead  className="text-center" style={{color:'#315167'}}>
+      <tr>
+      <th></th>
+        <th>Name</th>
+       <th>Price</th>
+        <th>Quantity</th>
+        <th>Update</th>
+        
+       
+      </tr>
+    </thead>
+    <tbody className=''>
         {
             myItems.map((myItem, index) => 
              
               <tr className='text-center '>
                 <td key={index}>{myItem.index}</td>
-              <td className='border border-2 '>{myItem.name}</td>
-              <td className='border border-2'>{myItem.supplier}</td>
-              <td className='border border-2'>{myItem.price}</td>
-              <td className='border border-2'>{myItem.quantity}</td>
-              <td className='className='border border-2><Button onClick={() => handleDelete(myItem._id)} className='btn btn-danger  '><FontAwesomeIcon icon = {faTrashCan} /></Button></td>
+              <td>{myItem.name}</td>
+              <td>{myItem.price}</td>
+              <td>{myItem.quantity}</td>
+              <td><Button onClick={() => handleDelete(myItem._id)} className='btn btn-danger'><FontAwesomeIcon icon = {faTrashCan} /></Button></td>
             </tr>
           
          )

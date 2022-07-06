@@ -54,34 +54,32 @@ const ManageInventories = () => {
     }
 
     return (
-         <div>
+         <div className='container mx-auto w-100'>
         
-        <h1 className=' text-center mt-3 py-5' style={{color:'#41478a'}}> All Inventory Products:{inventories.length}</h1>
-        <div className="Manageinventory-container mx-5 px-5">
+        <h1 className='my-5 text-center' style={{color:'#41478a'}}> All Inventory Products</h1>
+        <div className="Manageinventory-container mx-auto text-center">
        
-        <Table responsive="sm">
+        <Table striped bordered hover>
      
-        <thead className=' border border-4 text-center ' style={{color:'#315167'}}>
+        <thead  className="text-center" style={{color:'#315167'}}>
         <tr>
-          <th className='border border-2 ' >Name</th>
-          <th className='border border-2 '>Supplier</th>
-          <th className='border border-2 '>Price</th>
-          <th className='border border-2 '>Quantity</th>
-          <th className='border border-2 '>Update</th>
+          <th>Name</th>
+         <th>Price</th>
+          <th>Quantity</th>
+          <th>Update</th>
          
         </tr>
       </thead>
-      <tbody className='border border-4  '>
+      <tbody className=''>
       {/* key = {manageInventory._id} */}
         {
             inventories.map(manageInventory => 
               <tr className='text-center '>
               
-              <td className='border border-2 '>{manageInventory.name}</td>
-              <td className='border border-2'>{manageInventory.supplier}</td>
-              <td className='border border-2'>{manageInventory.price}</td>
-              <td className='border border-2'>{manageInventory.quantity}</td>
-              <td className='className='border border-2><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '> <FontAwesomeIcon icon = {faTrashCan} /></Button></td>
+              <td className=''>{manageInventory.name}</td>
+             <td className=''>{manageInventory.price}</td>
+              <td className=''>{manageInventory.quantity}</td>
+              <td ><Button onClick={() => handleDelete(manageInventory._id)} className='btn btn-danger  '> <FontAwesomeIcon icon = {faTrashCan} /></Button></td>
              
             </tr>
           

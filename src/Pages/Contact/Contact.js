@@ -3,26 +3,35 @@ import { Table } from 'react-bootstrap';
 
 const Contact = () => {
     return (
-        <div className='container'>
+
+      
+        <div className='container p-0 border-0 '>
             <h1 className=' text-center mt-5' style={{color:'#4a509b'}}>Contact Information</h1>
             <h3 className='text-center mt-4 text-success'>Adress:</h3>
-           <div className="d-flex mt-5">
-           
-         <div className='w-50 border  shadow-lg p-5 me-3  ' >
-          <h4> <span style={{color:'#4a509b'}}>Company Name: </span> <small>N&S electric WareHouse</small></h4> 
-          <p className='w-50 '>
+           <div className="   mt-5">
+
+           <div className='card w-50 text-start mx-auto shadow-lg'>
+           <div className='w-100 border  shadow-lg p-5 me-3  card-body b' >
+          <h4 > <span className='card-title' style={{color:'#4a509b'}}>Company Name: </span> <small>N&S electric WareHouse</small></h4> 
+          <p className='w-50 card-text'>
                1234 Street 
                City NewYork, AB 12345
                United States</p>
-         </div>
+        
+        
+               <h5><span style={{color:'#4a509b'}}>Phone: </span>  1290785378</h5>
+               <h5><span style={{color:'#4a509b'}}>Email: </span>  sales@email.com</h5>
+               <h5><span style={{color:'#4a509b'}}>Web:   </span>  www.company.com</h5>
+               </div>
+           </div>
+        
          <div>
-    <div className="verticalLine border border-1  h-100"></div>
+   
  </div>
-         <div className='w-50 border  shadow-lg p-5 ms-3 border-1'>
-               <h5><span style={{color:'#4a509b'}}>Phone:</span>1290785378</h5>
-               <h5><span style={{color:'#4a509b'}}>Email:</span> sales@email.com</h5>
-               <h5><span style={{color:'#4a509b'}}>Web:</span> www.company.com</h5>
-             </div>
+        <div className=''>
+       
+        </div>
+         
          </div> 
                
     <div className='mt-5 py-5'>
