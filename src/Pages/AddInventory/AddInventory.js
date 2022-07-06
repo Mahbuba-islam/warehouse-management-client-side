@@ -29,7 +29,11 @@ const AddInventory = () => {
         .then(res=> res.json())
         .then(data =>{
             console.log(data);
-            toast('Your Product Successfully added')
+             toast( <div class="alert alert-primary border-0">
+             <h4 class="alert-heading ">Well done!</h4>
+             <p>Aww yeah, you successfully added the product.</p>
+             </div>)
+           
             reset()
         } )
 

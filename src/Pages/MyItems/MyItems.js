@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import '../ManageInventory/ManageInventory.css'
-import { Link } from 'react-router-dom';
-import { Button, Table } from 'react-bootstrap';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Button, Table} from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase.init';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
-   
+   const navigate = useNavigate()
     const [myItems, setMyItems] = useState([]);
    
     useEffect( ()=>{
@@ -18,15 +20,36 @@ const MyItems = () => {
       if(user){
         const email = user.email
         console.log(email)
-        fetch(`http://localhost:4000/myItems?email=${email}`)
-        .then(res => res.json())
-        .then(data => setMyItems(data));
+        const url = `http://localhost:4000/myItems?email=${email}`
+     
+        fetch(url, {
+          headers:{
+            authorization:`Bearer ${localStorage.getItem('accessToken')}`
+          }
+        })
+        .then(res => {
+        if(res.status === 401 || res.status === 403){
+          navigate('/login')
+        } 
+        return res.json()
+       })
+        .then(data => {
+          setMyItems(data);
+      
+        })
+    
+        // console.log(error.message)
+        // if(error.response.status === 401 || error.response.status === 403){
+          // navigate('/login')
+        
       }
+    
         
     }, [user])
 
     const handleDelete = id =>{
-        const proceed = window.confirm('Are you sure?');
+      const proceed = toast.warn(<div><h4>Are You Sure! </h4> <strong> You really want to remove your product</strong>
+      </div>);
         if(proceed){
             const url = `http://localhost:4000/myItems/${id}`;
             fetch(url, {
@@ -82,7 +105,7 @@ const MyItems = () => {
             
     </Table>
                
-      
+    <ToastContainer /> 
  <div>
         <Link to="/addInventory">
                    <div className='text-center'>

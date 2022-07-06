@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../Firebase.init';
 
+// import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import './Header.css'
 
 const Header = () => {
@@ -20,7 +21,8 @@ const Header = () => {
             <Navbar collapseOnSelect expand="lg" sticky='top'  style={{backgroundColor:'#6b4a9b'}}>
                 <Container>
               <Navbar.Brand className='nav' as={Link} to="/">
-                    <h2 className='heading text-white'> WAREHOUSE</h2>
+            
+                    <h2 className='example text-warning fs-5 fst-italic fa-sm fa-10x fa-beat fa-1xs' > <span className=' text-warning text-bold fs-3'>N&S_</span> warehouse </h2>
                  </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                     <Navbar.Collapse id="responsive-navbar-nav"  >
