@@ -1,17 +1,14 @@
 import React, {  useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 
 const InventoryDetails = () => {
     const { id } = useParams();
     const [inventory , setInvntory] = useState({})
    const [isReload , setIsReload] = useState(false)
    const [quantity , setQuantity] = useState({})
-//    const [delivered , setQuantity] = useState({})
-  
-  
+
     useEffect( ()=>{
-        const url = `http://localhost:4000/inventoryItem/${id}`
+        const url = `https://vast-fjord-19368.herokuapp.com/inventoryItem/${id}`
         fetch(url)
        .then(res => res.json())
         .then(data => setInvntory(data))
@@ -27,7 +24,7 @@ const InventoryDetails = () => {
         event.target.reset()
        
        
-          const url = `http://localhost:4000/inventoryItem/${id}`;
+          const url = `https://vast-fjord-19368.herokuapp.com/inventoryItem/${id}`;
           fetch(url, {
               method: 'PUT',
               headers: {
@@ -49,7 +46,7 @@ const InventoryDetails = () => {
        const quantity = previousQuantity-1 
         const updateQuantity = { quantity}
        
-        const url = `http://localhost:4000/inventoryItem/${id}`;
+        const url = `https://vast-fjord-19368.herokuapp.com/inventoryItem/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

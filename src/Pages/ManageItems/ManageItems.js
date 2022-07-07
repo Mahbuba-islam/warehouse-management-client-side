@@ -15,14 +15,14 @@ const ManageItems = () => {
   
   
     useEffect( ()=>{
-        fetch(`http://localhost:4000/inventoryItems?page=${page}&size=${size}`)
+        fetch(`https://vast-fjord-19368.herokuapp.com/inventoryItems?page=${page}&size=${size}`)
         .then(res => res.json())
         .then(data => setInventories(data));
     }, [page, size])
 
   
     useEffect( ()=>{
-        fetch('http://localhost:4000/productCount')
+        fetch('https://vast-fjord-19368.herokuapp.com/productCount')
         .then(res => res.json())
         .then(data => {
             const count = data.count
@@ -37,7 +37,7 @@ const ManageItems = () => {
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure?');
         if(proceed){
-            const url = `http://localhost:4000/inventoryItems/${id}`;
+            const url = `https://vast-fjord-19368.herokuapp.com/inventoryItems/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

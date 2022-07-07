@@ -9,7 +9,7 @@ const Managements = () => {
     const [managements, setManagement] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:4000/manageMent')
+        fetch('https://vast-fjord-19368.herokuapp.com/manageMent')
         .then(res => res.json())
         .then(data => setManagement(data));
     }, [])

@@ -48,7 +48,7 @@ const Login = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         signInWithEmailAndPassword(email, password)
-          fetch('http://localhost:4000/login', {
+          fetch('https://vast-fjord-19368.herokuapp.com/login', {
             method:'POST',
             headers:{
                 'content-type':'application/json'

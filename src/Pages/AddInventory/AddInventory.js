@@ -9,13 +9,10 @@ const AddInventory = () => {
    
     const { register, handleSubmit, reset } = useForm();
     const [user] =useAuthState(auth)
-   
-     const imgStorageKey = 'ff4c938471ffc70932bc22ba56c54e31';
-    
-    const onSubmit = data => {
+     const onSubmit = data => {
        
         console.log(data)
-        const url = 'http://localhost:4000/inventoryItems';
+        const url = 'https://vast-fjord-19368.herokuapp.com/inventoryItems';
         
         fetch(url, {
             method: 'POST',
@@ -37,29 +34,7 @@ const AddInventory = () => {
             reset()
         } )
 
-        // const image = data.img[0];
-        // const formData = FormData()
-        // formData.Append('image', image)
-        // const ImgUrl = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`
-        // fetch(ImgUrl, {
-        //     method: 'POST',
-        
-            
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: formData
-        // })
-        // .then(res=> res.json())
-        // .then(result =>{
-        //     // if(result.success){
-        //     //     const img = result.data.url
-               
-        //     // }
-        //     console.log(result);
-            
-        //     reset()
-        // } )
+       
 
     };
     return (

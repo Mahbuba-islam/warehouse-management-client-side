@@ -20,7 +20,7 @@ const MyItems = () => {
       if(user){
         const email = user.email
         console.log(email)
-        const url = `http://localhost:4000/myItems?email=${email}`
+        const url = `https://vast-fjord-19368.herokuapp.com/myItems?email=${email}`
      
         fetch(url, {
           headers:{
@@ -41,13 +41,13 @@ const MyItems = () => {
        }
     
         
-    }, [user])
+    }, [navigate, user])
 
     const handleDelete = id =>{
       const proceed = toast.warn(<div><h4>Are You Sure! </h4> <strong> You really want to remove your product</strong>
       </div>);
         if(proceed){
-            const url = `http://localhost:4000/myItems/${id}`;
+            const url = `https://vast-fjord-19368.herokuapp.com/myItems/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
